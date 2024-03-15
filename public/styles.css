@@ -1,0 +1,10 @@
+.slide-down {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.slide-down.active {
+    max-height: 1000px;
+    /* Ajusta este valor según sea necesario */
+}

@@ -1,0 +1,68 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { supabase } from "../lib/supabase";
+import Base from "../layouts/Base.astro";
+import { Sensores } from "../components/Sensores";
+import { SearchSaveMeasurement } from "../components/SearchSaveMeasurement"
+
+const { cookies, redirect } = Astro;
+
+const accessToken = cookies.get("sb-access-token");
+const refreshToken = cookies.get("sb-refresh-token");
+
+if (!accessToken || !refreshToken) {
+    return redirect("/signin");
+}
+
+const { data, error } = await supabase.auth.setSession({
+    refresh_token: refreshToken.value,
+    access_token: accessToken.value,
+});
+
+if (error) {
+    cookies.delete("sb-access-token", {
+        path: "/",
+    });
+    cookies.delete("sb-refresh-token", {
+        path: "/",
+    });
+
+    return redirect("/signin");
+}
+
+const email = data?.user?.email;
+
+---
+
+<Base title="dashboard">
+    <div class="h-full w-full flex items-center justify-center">
+        <div class="grid grid-cols-3 gap-4">
+            <!-- Importante el uso de "client" para poder usar el componente -->
+            <!-- Introducir un componente de Sensor por cada sensor que queramos captar -->
+            <Sensores
+                client:load
+                parameter="Temperature"
+                id="T_gauge"
+                maxValue="40"
+                minValue="-10"
+            />
+            <Sensores
+                client:load
+                parameter="Humidity"
+                id="H_gauge"
+                maxValue="100"
+                minValue="10"
+            />
+            <!-- <Sensores
+                client:load
+                parameter="VOC"
+                id="H_gauge"
+                maxValue="100"
+                minValue="10"
+            /> -->
+        </div>
+        <div class="min-h-screen flex justify-center items-center">
+            <SearchSaveMeasurement client:load/>
+        </div>
+    </div>
+</Base>

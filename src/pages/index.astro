@@ -1,0 +1,45 @@
+---
+import Base from "../layouts/Base.astro";
+
+export const prerender = true;
+
+const title = "Supabase and Astro Demo";
+---
+
+<Base title={title}>
+	<style>
+        .welcome-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f5f9; /* azul claro */
+            color: #1a202c; /* negro */
+            text-align: center;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+		}
+    </style>
+
+    <div class="welcome-container">
+        <h1>Bienvenido a Sensorica</h1>
+        <p>¡Tu plataforma para el monitoreo inteligente!</p>
+    </div>
+</Base>
+
+<!-- ---
+import Layout from '../layouts/Layout.astro';
+import { Sensores } from '../components/Sensores';
+---
+
+<Layout title="Welcome to Astro.">
+	<Sensores client:visible/>
+</Layout> -->

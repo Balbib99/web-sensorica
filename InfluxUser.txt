@@ -1,0 +1,5 @@
+Username: ETS
+Password: Arquitectur4
+Org: ETS
+Bucket: Sensores
+token: B_Mgn_YKE7M45-oiOEW1v5YxwFqFvs6NwDr_4sKyoBI5x1KEOOng2BcM0G8_KBO4o-mbW3F8_xy93YBRJGINbQ==
