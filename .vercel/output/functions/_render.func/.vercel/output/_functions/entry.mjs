@@ -1,5 +1,5 @@
 import { renderers } from './renderers.mjs';
-import { l as levels, g as getEventPrefix, L as Logger, A as AstroIntegrationLogger, manifest } from './manifest_DpdOWMWb.mjs';
+import { l as levels, g as getEventPrefix, L as Logger, A as AstroIntegrationLogger, manifest } from './manifest_BD_TwuV_.mjs';
 import { e as appendForwardSlash, j as joinPaths, t as trimSlashes, s as slash, p as prependForwardSlash, r as removeTrailingForwardSlash, f as collapseDuplicateSlashes } from './chunks/astro/assets-service_D1CPkcxn.mjs';
 import { R as ROUTE_DATA_SYMBOL, A as AstroError, l as ResponseSentError, n as MiddlewareNoDataOrNextCalled, o as MiddlewareNotAResponse, G as GetStaticPathsRequired, p as InvalidGetStaticPathsReturn, q as InvalidGetStaticPathsEntry, t as GetStaticPathsExpectedParams, u as GetStaticPathsInvalidRouteParam, P as PageNumberParamNotFound, N as NoMatchingStaticPathFound, v as PrerenderDynamicEndpointPathCollide, w as LocalsNotAnObject, x as ASTRO_VERSION, C as ClientAddressNotAvailable, S as StaticClientAddressNotAvailable, y as renderEndpoint, z as ReservedSlotName, B as renderSlotToString, D as renderJSX, H as chunkToString, J as CantRenderPage, K as renderPage$1, O as REROUTE_DIRECTIVE_HEADER } from './chunks/astro_RHo4ZIl7.mjs';
 import { serialize, parse } from 'cookie';
@@ -2200,14 +2200,14 @@ const createExports = (manifest, { middlewareSecret }) => {
 };
 
 const _page0 = () => import('./chunks/generic_CY8Ae8jC.mjs');
-const _page1 = () => import('./chunks/register_C0VTyGrz.mjs');
-const _page2 = () => import('./chunks/signin_alAdia2r.mjs');
-const _page3 = () => import('./chunks/signout_jnJHVDB6.mjs');
-const _page4 = () => import('./chunks/download_B5U2oQa2.mjs');
-const _page5 = () => import('./chunks/dashboard_BOn4XTUr.mjs');
-const _page6 = () => import('./chunks/register_-5a1W_Tq.mjs');
-const _page7 = () => import('./chunks/signin_ZAF4u9wm.mjs');
-const _page8 = () => import('./chunks/index_BEwCDhRw.mjs');
+const _page1 = () => import('./chunks/register_DbFz6y_D.mjs');
+const _page2 = () => import('./chunks/signin_wMaUC8JA.mjs');
+const _page3 = () => import('./chunks/signout_BH74u53l.mjs');
+const _page4 = () => import('./chunks/download_DgX9ooDo.mjs');
+const _page5 = () => import('./chunks/dashboard_C3Q8lr4a.mjs');
+const _page6 = () => import('./chunks/register_Dzc8dIHB.mjs');
+const _page7 = () => import('./chunks/signin_CEZXpR92.mjs');
+const _page8 = () => import('./chunks/index_DSF4fD2W.mjs');
 const pageMap = new Map([
     ["node_modules/astro/dist/assets/endpoint/generic.js", _page0],
     ["src/pages/api/auth/register.ts", _page1],
@@ -2226,7 +2226,7 @@ const _manifest = Object.assign(manifest, {
     middleware: onRequest
 });
 const _args = {
-    "middlewareSecret": "60e5abb3-a894-4765-b46a-5d2084636a6a"
+    "middlewareSecret": "ef5d9995-c634-4f3d-b1c4-91a1c3a2b0a8"
 };
 const _exports = createExports(_manifest, _args);
 const __astrojsSsrVirtualEntry = _exports.default;
