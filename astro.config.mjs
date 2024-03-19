@@ -10,5 +10,5 @@ export default defineConfig({
   integrations,
   output: "dist",
   // Utiliza el adapter correspondiente
-  adapter: require(adapter).default()
+  adapter
 });
