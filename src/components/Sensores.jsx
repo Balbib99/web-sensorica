@@ -9,7 +9,7 @@ export function Sensores({ 'client:load': clientLoad, parameter, id, maxValue, m
 
 
     // Constantes de Influx
-    const INFLUX_URL = 'http://localhost:8086'
+    const INFLUX_URL = 'http://157.88.73.30:8086'
     const INFLUX_API_TOKEN = 'B_Mgn_YKE7M45-oiOEW1v5YxwFqFvs6NwDr_4sKyoBI5x1KEOOng2BcM0G8_KBO4o-mbW3F8_xy93YBRJGINbQ=='
     const INFLUX_ORG = '1e5f0c3c4d62fa0e'
     const INFLUX_BUCKET = 'Sensores'
