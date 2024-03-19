@@ -1,7 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Base from "../layouts/Base.astro";
-import { supabase } from "../lib/supabase";
 
 const { cookies, redirect } = Astro;
 
@@ -12,51 +11,6 @@ if (accessToken && refreshToken) {
   return redirect("/dashboard");
 }
 
-const handleSubmit = async (event: {
-  preventDefault: () => void;
-  target: { email: { value: any }; password: { value: any } };
-}) => {
-  event.preventDefault();
-
-  const email = event.target.email.value;
-  const password = event.target.password.value;
-
-  try {
-    if (!email || !password) {
-      console.log("Se requieren password e email");
-
-      return new Response("Email and password are required", { status: 400 });
-    }
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
-
-    if (error) {
-      console.log("Hemos tenido un error en el signin");
-
-      return new Response(error.message, { status: 500 });
-    }
-
-    const { access_token, refresh_token } = data.session;
-
-    console.log("access token: " + access_token);
-    console.log("refresh token: " + refresh_token);
-
-    cookies.set("sb-access-token", access_token, {
-      path: "/",
-    });
-    cookies.set("sb-refresh-token", refresh_token, {
-      path: "/",
-    });
-
-    return redirect("/dashboard");
-
-  } catch (error) {
-    console.error("Error inesperado:", error);
-    // Manejar el error inesperado
-  }
-};
 ---
 
 <Base title="Sign in">
@@ -68,7 +22,7 @@ const handleSubmit = async (event: {
           >Create an account{accessToken}</a
         >
       </p>
-      <form onsubmit=`${handleSubmit}`>
+      <form action="/api/auth/signin" method="post">
         <div class="mb-4">
           <label for="email" class="block text-sm font-medium text-gray-700"
             >Email</label
@@ -94,7 +48,7 @@ const handleSubmit = async (event: {
         <button
           type="submit"
           class="w-full py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-          >Login</button
+        >Sign in</button
         >
       </form>
     </div>
