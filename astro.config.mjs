@@ -2,11 +2,13 @@ import { defineConfig } from 'astro/config';
 import tailwind from "@astrojs/tailwind";
 import react from "@astrojs/react";
 
-import vercel from "@astrojs/vercel/serverless";
+// Define un adapter basado en el entorno para determinar si estamos en Vercel o localmente
+const adapter = process.env.VERCEL ? "vercel/serverless" : "astro";
+const integrations = [tailwind(), react()];
 
-// https://astro.build/config
 export default defineConfig({
-  integrations: [tailwind(), react()],
-  output: "server",
-  adapter: vercel()
+  integrations,
+  output: "dist",
+  // Utiliza el adapter correspondiente
+  adapter: require(adapter).default()
 });
