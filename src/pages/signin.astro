@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Base from "../layouts/Base.astro";
+import { supabase } from "../lib/supabase";
 
 const { cookies, redirect } = Astro;
 
@@ -10,6 +11,52 @@ const refreshToken = cookies.get("sb-refresh-token");
 if (accessToken && refreshToken) {
   return redirect("/dashboard");
 }
+
+const handleSubmit = async (event: {
+  preventDefault: () => void;
+  target: { email: { value: any }; password: { value: any } };
+}) => {
+  event.preventDefault();
+
+  const email = event.target.email.value;
+  const password = event.target.password.value;
+
+  try {
+    if (!email || !password) {
+      console.log("Se requieren password e email");
+
+      return new Response("Email and password are required", { status: 400 });
+    }
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+
+    if (error) {
+      console.log("Hemos tenido un error en el signin");
+
+      return new Response(error.message, { status: 500 });
+    }
+
+    const { access_token, refresh_token } = data.session;
+
+    console.log("access token: " + access_token);
+    console.log("refresh token: " + refresh_token);
+
+    cookies.set("sb-access-token", access_token, {
+      path: "/",
+    });
+    cookies.set("sb-refresh-token", refresh_token, {
+      path: "/",
+    });
+
+    return redirect("/dashboard");
+
+  } catch (error) {
+    console.error("Error inesperado:", error);
+    // Manejar el error inesperado
+  }
+};
 ---
 
 <Base title="Sign in">
@@ -18,9 +65,10 @@ if (accessToken && refreshToken) {
       <h1 class="text-3xl font-semibold mb-4">Sign in</h1>
       <p class="text-gray-600 mb-4">
         New here? <a href="/register" class="text-blue-500"
-          >Create an account{accessToken}</a>
+          >Create an account{accessToken}</a
+        >
       </p>
-      <form action="/api/auth/signin" method="post">
+      <form onsubmit=`${handleSubmit}`>
         <div class="mb-4">
           <label for="email" class="block text-sm font-medium text-gray-700"
             >Email</label
